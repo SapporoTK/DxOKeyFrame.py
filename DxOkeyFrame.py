@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-DxOKeyFrame.py Ver 1.0
+DxOKeyFrame.py Ver 1.1
 Copyright (C) 2017 Tomoya Kawabata (https://planet-green.com/)
 
 
@@ -354,10 +354,15 @@ def main():
 
     #小数の値を持つパラメーター
     params_float = [
+        "ArtisticVignettingCornerAttenuation",
+        "ArtisticVignettingMidFieldAttenuation",
+        "ArtisticVignettingRoundness",
+        "ArtisticVignettingTransition",
         "BlurDetails",
         "BlurIntensity",
         "BlurSmoothTransitions",
         "ColorModeContrast",
+        "ColorModeSaturation",
         "ColorModeStyleIntensity",
         "ColorRenderingIntensity",
         "ColorRenderingIntent",
@@ -407,8 +412,56 @@ def main():
 
     #値が数値でないパラメーター
     params_fix = [
-    	"ColorRenderingType",
-    	"NoiseRemovalMethod",
+        "AnamorphosisActive",
+        "AnamorphosisType",
+        "ArtisticVignettingActive",
+        "BlurActive",
+        "BlurActiveAuto",
+        "ChannelMixerActive",
+        "ChromaticAberrationActive",
+        "ChromaticAberrationIntensityAuto",
+        "ChromaticAberrationLateralActive",
+        "ChromaticAberrationPurpleActive",
+        "ChromaticAberrationSizeAuto",
+        "ColorAccentuationActive",
+        "ColorFilterActive",
+        "ColorIntentAutoActive",
+        "ColorModeFilter",
+        "ColorModeStyle",
+        "ColorRenderingActive",
+        "ColorRenderingICCProfile",
+        "ColorRenderingType",
+        "ContrastControlGroupActive",
+        "ContrastEnhancementActive",
+        "ColorRenderingType",
+        "CropActive",
+        "DistortionActive",
+        "ExposureActive",
+        "HSLActive",
+        "HazeRemovalActive",
+        "KeystoningActive",
+        "KeystoningHorizonActive",
+        "LightingActive",
+        "MultiPointColorBalanceActive",
+        "NoiseRemovalMethod",
+        "NoiseRemoveMoireActive",
+        "RedEyeCorrectionActive",
+        "SelectiveTonalControlActive",
+        "TiltShiftActive",
+        "ToneCurveActive",
+        "ToningActive",
+        "VignettingActive",
+        "VignettedBlurActive",
+        "VignettedBlurMode",
+        "VignettingClippingAuto",
+        "VignettingIntensityAuto",
+        "VignettingType",
+        "VignettingTypeAuto",
+        "WhiteBalanceRGBActive",
+        "WhiteBalanceRawActive",
+        "WhiteBalanceRawPreset",
+        "WhiteBalanceRawTemperatureAuto",
+        "WhiteBalanceRawTintAuto",
     ]
 
     diffs = {}
