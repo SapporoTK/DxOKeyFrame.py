@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-DxOKeyFrame.py Ver 1.1
+DxOKeyFrame.py Ver 1.2
 Copyright (C) 2017 Tomoya Kawabata (https://planet-green.com/)
 
 
@@ -100,7 +100,7 @@ def parseDopData(allLines):
     allLines = re.sub( r',(\s*)}', r'\1}', allLines, flags=(re.MULTILINE | re.DOTALL))
 
     # 数字だけが列挙された(キーの無い値だけの)配列は [] に
-    allLines = re.sub( r'{([ \t\r\n0-9,.]+)}', r'[\1]', allLines, flags=(re.MULTILINE | re.DOTALL))
+    allLines = re.sub( r'{([ \t\r\n0-9.\-,]+)}', r'[\1]', allLines, flags=(re.MULTILINE | re.DOTALL))
 
     listAllLines = list(allLines)
 
@@ -446,6 +446,8 @@ def main():
         "NoiseRemovalMethod",
         "NoiseRemoveMoireActive",
         "RedEyeCorrectionActive",
+        "OPTiltShiftShouldSynchronizeIntensities",
+        "OPTiltShiftShouldSynchronizeLines",
         "SelectiveTonalControlActive",
         "TiltShiftActive",
         "ToneCurveActive",
@@ -488,17 +490,10 @@ def main():
             except ValueError:
                 pass
 
-            print "del: " + key
-
     #カラーレンダリング設定など、1枚目の設定を以降の全ての画像に適用するパラメーター
     for key in (params_fix):
-    	if( setting_st_ov.has_key(key) or setting_st_bs.has_key(key) ):
+        if( setting_st_ov.has_key(key) or setting_st_bs.has_key(key) ):
     		values_fix[key] = setting_st_ov.get(key, setting_st_bs.get(key,0))
-    	else:
-    		try:
-              		params_fix.remove(key)
-    	        except ValueError:
-    			pass
 
     exif_st = getExif(fname1)
     exif_en = getExif(fname2)
@@ -570,8 +565,8 @@ def main():
                     if flg_verbose:
                         print "\t" + key + " : " + ('%f' % setting_ov[key])
 
-        	for key in params_fix:
-        		setting_ov[key] = values_fix[key]
+            for key in values_fix.keys():
+                setting_ov[key] = values_fix[key]
 
             if(flg_exposure) :
                 exif = getExif(cur_filename_raw)
