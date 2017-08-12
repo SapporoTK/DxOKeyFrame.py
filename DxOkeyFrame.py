@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-DxOKeyFrame.py Ver 1.2
+DxOKeyFrame.py Ver 1.3
 Copyright (C) 2017 Tomoya Kawabata (https://planet-green.com/)
 
 
@@ -261,8 +261,6 @@ def main():
     if not flg_dryRun:
         ExitIfExistsDxOProcess()
 
-
-
     text = open( file_dir + fname1 + ".dop" ).read()
     data_start = parseDopData(text)
 
@@ -274,7 +272,6 @@ def main():
 
     setting_en_bs = data_end["Sidecar"]["Source"]["Items"][0]["Settings"]["Base"]
     setting_en_ov = data_end["Sidecar"]["Source"]["Items"][0]["Settings"]["Overrides"]
-
 
     #整数の値を持つパラメーター
     params_int = [
@@ -293,15 +290,11 @@ def main():
         "ChannelMixerYellow",
         "ChromaticAberrationIntensity",
         "ChromaticAberrationSize",
-        "ColorModeContrast",
         "ColorModeFilterIntensity",
         "ContrastEnhancementGlobalIntensity",
         "ContrastEnhancementHighlightIntensity",
         "ContrastEnhancementLowlightIntensity",
         "ContrastEnhancementMidlightIntensity",
-        "CropRatio",
-        "DehazingValue",
-        "DistortionIntensity",
         "DistortionFocus",
         "EdgeTexturingSeed",
         "FramingSeed",
@@ -310,7 +303,6 @@ def main():
         "HighlightToningIntensity",
         "KeystoningBlendingIntensity",
         "KeystoningHVRatio",
-        "KeystoningHorizon",
         "KeystoningLeftRight",
         "KeystoningUpDown",
         "LightingBlackPoint",
@@ -320,20 +312,13 @@ def main():
         "LightingIntensity",
         "LightingRadius",
         "LightingShadowPreservation",
-        "LightingV2BlackPoint",
-        "LightingV2BrightnessAmount",
-        "LightingV2HiLightsGain",
-        "LightingV2Intensity",
-        "LightingV2LoLightsGain",
-        "LightingV2LocalContrastAmount",
-        "LightingV3BlackPoint",
-        "LightingV3Highlights",
-        "LightingV3MidTones",
-        "LightingV3Shadows",
-        "LightingV3WhitePoint",
         "LightingWhitePoint",
         "LowlightToningIntensity",
         "MultiPointColorBalanceIntensity",
+        "NoiseChrominance",
+        "NoiseDeadPixelIntensity",
+        "NoiseLuminance",
+        "NoiseLuminanceContrast",
         "OutputImageMaxSize",
         "TexturingSeed",
         "TiltShiftActive",
@@ -341,7 +326,6 @@ def main():
         "ToneCurveGreenGamma",
         "ToneCurveMasterGamma",
         "ToneCurveRedGamma",
-        "UnsharpMaskThreshold",
         "VignettedBlurBlendFactor",
         "VignettedBlurRadius",
         "VignettedBlurRoundness",
@@ -349,7 +333,7 @@ def main():
         "VignettedBlurVignetteSize",
         "VignettingClipping",
         "VignettingMidFieldIntensity",
-        "WhiteBalanceRGBTemperature"
+        "WhiteBalanceRGBTemperature",
     ]
 
     #小数の値を持つパラメーター
@@ -366,6 +350,9 @@ def main():
         "ColorModeStyleIntensity",
         "ColorRenderingIntensity",
         "ColorRenderingIntent",
+        "DehazingValue",
+        "DistortionFocal",
+        "DistortionIntensity",
         "EdgeTexturingOpacity",
         "ExposureBias",
         "FramingScaleFactor",
@@ -392,20 +379,26 @@ def main():
         "HSLYellowLuminance",
         "HSLYellowSaturation",
         "KeystoningHorizon",
+        "LightingV2BlackPoint",
+        "LightingV2BrightnessAmount",
+        "LightingV2HiLightsGain",
+        "LightingV2Intensity",
+        "LightingV2LoLightsGain",
+        "LightingV2LocalContrastAmount",
+        "LightingV3BlackPoint",
+        "LightingV3Highlights",
         "LightingV3Intensity",
-        "NoiseChrominance",
-        "NoiseDeadPixelIntensity",
-        "NoiseLuminance",
-        "NoiseLuminanceContrast",
+        "LightingV3MidTones",
+        "LightingV3Shadows",
+        "LightingV3WhitePoint",
         "NoiseRemoveMoireIntensity",
+        "TexturingOpacity",
         "UnsharpMaskIntensity",
         "UnsharpMaskIntensityOffset",
         "UnsharpMaskRadius",
         "UnsharpMaskThreshold",
-        "TexturingOpacity",
-        "UnsharpMaskRadius",
-        "VignettingIntensity",
         "VibrancyIntensity",
+        "VignettingIntensity",
         "WhiteBalanceRawTemperature",
         "WhiteBalanceRawTint"
     ]
@@ -435,23 +428,50 @@ def main():
         "ContrastEnhancementActive",
         "ColorRenderingType",
         "CropActive",
+        "CropAuto",
+        "CropRatio",
         "DistortionActive",
+        "DistortionKeepRatio",
+        "DistortionType",
+        "DistortionTypeAuto",
         "ExposureActive",
-        "HSLActive",
+        "ExposureAutoMode",
+        "GrainSizeAuto",
         "HazeRemovalActive",
+        "HSLActive",
         "KeystoningActive",
+        "KeystoningAutoMod",
         "KeystoningHorizonActive",
+        "KeystoningHorizonAuto",
+        "KeystoningMode",
         "LightingActive",
+        "LightingAutoMode",
+        "LightingBlackAndWhitePointAuto",
+        "LightingContrastGlobalAuto",
+        "LightingContrastLocalAuto",
+        "LightingGammaAuto",
+        "LightingIntensityAuto",
+        "LightingRadiusAuto",
+        "LightingShadowPreservationAuto",
+        "MicroContrastAuto",
         "MultiPointColorBalanceActive",
+        "NoiseActive",
+        "NoiseChrominanceAuto",
+        "NoiseDeadPixelAuto",
+        "NoiseLuminanceAuto",
+        "NoiseLuminanceContrastAuto",
         "NoiseRemovalMethod",
+        "NoiseRemoveMoireAuto",
         "NoiseRemoveMoireActive",
-        "RedEyeCorrectionActive",
         "OPTiltShiftShouldSynchronizeIntensities",
         "OPTiltShiftShouldSynchronizeLines",
+        "RedEyeCorrectionActive",
         "SelectiveTonalControlActive",
         "TiltShiftActive",
         "ToneCurveActive",
         "ToningActive",
+        "UnsharpMaskActive",
+        "UnsharpMaskActiveAuto",
         "VignettingActive",
         "VignettedBlurActive",
         "VignettedBlurMode",
@@ -464,6 +484,10 @@ def main():
         "WhiteBalanceRawPreset",
         "WhiteBalanceRawTemperatureAuto",
         "WhiteBalanceRawTintAuto",
+        # test
+        "CropRect",
+        "TiltShiftGradient1",
+        "TiltShiftGradient2"
     ]
 
     diffs = {}
@@ -546,20 +570,27 @@ def main():
 
             setting_bs = data["Sidecar"]["Source"]["Items"][0]["Settings"]["Base"]
             setting_ov = data["Sidecar"]["Source"]["Items"][0]["Settings"]["Overrides"]
+            getValueFromData = lambda key: setting_ov.get(key, setting_bs.get(key, None))
 
             percent = float(i) / float(total_num)
 
             for key in params_int:
-                setting_ov[key] = round(values_start[key] + diffs[key] * percent)
-                if( setting_ov[key] == setting_bs.get(key, False) ) :
+                val = round(values_start[key] + diffs[key] * percent)
+                if getValueFromData(key) == val :
+                    continue
+                setting_ov[key] = val
+                if( setting_ov[key] == setting_bs.get(key, None) ) :
                     del setting_ov[key]
                 else :
                     if flg_verbose:
                         print "\t" + key + " : " + ('%d' % setting_ov[key])
 
             for key in params_float:
-                setting_ov[key] = round(values_start[key] + diffs[key] * percent, 6)
-                if( setting_ov[key] == setting_bs.get(key, False) ) :
+                val = round(values_start[key] + diffs[key] * percent, 6)
+                if getValueFromData(key) == val :
+                    continue
+                setting_ov[key] = val
+                if( setting_ov[key] == setting_bs.get(key, None) ) :
                     del setting_ov[key]
                 else :
                     if flg_verbose:
@@ -567,11 +598,19 @@ def main():
 
             for key in values_fix.keys():
                 setting_ov[key] = values_fix[key]
+                if getValueFromData(key) == values_fix[key] :
+                    continue
+                setting_ov[key] = values_fix[key]
+                if flg_verbose:
+                    print "\t" + key + " : " + ('%s' % setting_ov[key])
 
             if(flg_exposure) :
                 exif = getExif(cur_filename_raw)
                 curExposureValue = tExpV_st + tExpV_diff * percent
-                setting_ov["ExposureBias"] = calcExposureBias(exif["f"], exif["t"], exif["iso"], curExposureValue)
+                val = calcExposureBias(exif["f"], exif["t"], exif["iso"], curExposureValue)
+                if getValueFromData(key) == val :
+                    continue
+                setting_ov["ExposureBias"] = val
                 if flg_verbose:
                     print '\tF:%02.1f T:%02.6f ISO:%d' % (exif["f"], exif["t"], exif["iso"])
                     print '\tcurExposureValue:%f' %  curExposureValue
