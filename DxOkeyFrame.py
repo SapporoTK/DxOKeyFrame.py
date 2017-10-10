@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-DxOKeyFrame.py Ver 1.3
+DxOKeyFrame.py Ver 1.4
 Copyright (C) 2017 Tomoya Kawabata (https://planet-green.com/)
 
 
@@ -451,6 +451,7 @@ def main():
         "LightingContrastLocalAuto",
         "LightingGammaAuto",
         "LightingIntensityAuto",
+        "LightingMode",
         "LightingRadiusAuto",
         "LightingShadowPreservationAuto",
         "MicroContrastAuto",
@@ -527,8 +528,8 @@ def main():
     tExpV_diff = tExpV_en - tExpV_st
 
     if flg_verbose:
-        print 'Start Frame EV F:%02.1f T:%02.6f ISO:%d tEV:%f' % (exif_st["f"], exif_st["t"], exif_st["iso"], tExpV_st)
-        print 'End   Frame EV F:%02.1f T:%02.6f ISO:%d tEV:%f' % (exif_en["f"], exif_en["t"], exif_en["iso"], tExpV_en)
+        print 'Start Frame EV F:%02.1f T:%02.6f ISO:%d EV:%01.2f tEV:%f' % (exif_st["f"], exif_st["t"], exif_st["iso"], values_start["ExposureBias"], tExpV_st)
+        print 'End   Frame EV F:%02.1f T:%02.6f ISO:%d EV:%01.2f tEV:%f' % (exif_en["f"], exif_en["t"], exif_en["iso"], values_end["ExposureBias"], tExpV_en)
 
     #
     #	main loop

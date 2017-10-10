@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.4] - 2017-10-10
+
+- fix parameters
+
 ## [1.3] - 2017-08-12
 
 - fix parameters
